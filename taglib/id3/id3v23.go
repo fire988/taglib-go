@@ -48,6 +48,21 @@ func getSimpleId3v23TextFrame(frames []*Id3v23Frame) string {
 	return strings.Join(fields, " ")
 }
 
+func getSimpleId3v23TextFrameInBytes(frames []*Id3v23Frame) []byte {
+	if len(frames) == 0 {
+		return []byte{}
+	}
+	fields, err := GetId3v23TextIdentificationFrameInBytes(frames[0])
+	if err != nil {
+		return []byte{}
+	}
+	return fields
+}
+
+func (t *Id3v23Tag) Cover() []byte {
+	return getSimpleId3v23TextFrameInBytes(t.Frames["APIC"])
+}
+
 func (t *Id3v23Tag) Title() string {
 	return getSimpleId3v23TextFrame(t.Frames["TIT2"])
 }

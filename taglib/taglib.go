@@ -38,6 +38,7 @@ type GenericTag interface {
 	Year() time.Time
 	Track() uint32
 	Disc() uint32
+	Cover() []byte
 
 	// CustomFrames returns non-standard, user-defined frames as a map from
 	// descriptions (e.g. "PERFORMER", "MusicBrainz Album Id", etc.) to
